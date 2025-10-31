@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
 import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
 
+
 export const register = async (req,res) => {
     try {
        
@@ -125,6 +126,7 @@ export const updateProfile = async (req,res) => {
             const publicId = user.photoUrl.split("/").pop().split(".")[0]; // extract public id
             deleteMediaFromCloudinary(publicId);
         }
+        
 
         // upload new photo
         const cloudResponse = await uploadMedia(profilePhoto.path);
@@ -147,3 +149,17 @@ export const updateProfile = async (req,res) => {
         })
     }
 }
+export const requestTeacherRole = async (req, res) => {
+  try {
+    const user = await User.findById(req.id);
+    if (!user) return res.status(404).json({ success: false, message: "User not found." });
+    if (user.teacherRequest) return res.status(400).json({ success: false, message: "Request already submitted." });
+
+    user.teacherRequest = true;
+    await user.save();
+    return res.status(200).json({ success: true, message: "Teacher request submitted successfully." });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ success: false, message: "Failed to submit teacher request." });
+  }
+};

@@ -1,43 +1,110 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import img1 from "/126357.jpg";
+import img2 from "/ii.jpg";
+import img3 from "/iii.jpg";
+
+// Custom Left Arrow
+const CustomPrevArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black text-white p-2 rounded-full opacity-50 hover:opacity-100 z-10"
+    >
+      &#8592;
+    </button>
+  );
+};
+
+// Custom Right Arrow
+const CustomNextArrow = (props) => {
+  const { onClick } = props;
+  return (
+    <button
+      onClick={onClick}
+      className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black text-white p-2 rounded-full opacity-50 hover:opacity-100 z-10"
+    >
+      &#8594;
+    </button>
+  );
+};
 
 const HeroSection = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-const navigate = useNavigate();
-  const searchHandler = (e) => {
-    e.preventDefault();
-    if(searchQuery.trim() !== ""){
-      navigate(`/course/search?query=${searchQuery}`)
-    }
-    setSearchQuery("");
-  }
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: true, // Enable left and right arrows
+    swipe: true,
+    swipeToSlide: true,
+    adaptiveHeight: true,
+    cssEase: "ease-in-out",
+    customPaging: (i) => (
+      <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+    ),
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
+  };
 
   return (
-    <div className="relative bg-gradient-to-r from-blue-500 to bg-indigo-600 dark:from-gray-800 dark:to-gray-900 py-24 px-4 text-center">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-white text-4xl font-bold mb-4">
-          Find the Best Courses for You
-        </h1>
-        <p className="text-gray-200 dark:text-gray-400 mb-8">
-          Discover, Learn, and Upskill with our wide range of courses
-        </p>
-
-        <form onSubmit={searchHandler} className="flex items-center bg-white dark:bg-gray-800 rounded-full shadow-lg overflow-hidden max-w-xl mx-auto mb-6">
-          <Input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search Courses"
-            className="flex-grow border-none focus-visible:ring-0 px-6 py-3 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500"
+    <div className="relative w-full">
+      <Slider {...settings}>
+        <div className="relative">
+          <img
+            src={img1}
+            alt="Slide 1"
+            className="w-full h-[400px] object-cover"
           />
-          <Button type="submit" className="bg-blue-600 dark:bg-blue-700 text-white px-6 py-3 rounded-r-full hover:bg-blue-700 dark:hover:bg-blue-800">Search</Button>
-        </form>
-       <Button onClick={()=> navigate(`/course/search?query`)} className="bg-white dark:bg-gray-800 text-blue-600 rounded-full hover:bg-gray-200">Explore Courses</Button>
-      </div>
+          <div className="absolute inset-0 flex justify-center items-center">
+            <div className="text-center text-white">
+              <h2 className="text-4xl font-bold mb-4" style={{ color: "black" }}>
+                Learn from the Best
+              </h2>
+              <p className="text-lg mb-6">Skills that will shape your future.</p>
+            </div>
+          </div>
+        </div>
+        <div className="relative">
+          <img
+            src={img2}
+            alt="Slide 2"
+            className="w-full h-[400px] object-cover"
+          />
+        </div>
+        <div className="relative">
+          <img
+            src={img3}
+            alt="Slide 3"
+            className="w-full h-[400px] object-cover"
+          />
+          <div className="absolute inset-0 flex justify-center items-center">
+            <div
+              className="text-center text-black"
+              style={{ marginRight: "420px" }}
+            >
+              <h2 className="text-4xl font-bold mb-4" style={{ color: "black" }}>
+                Achieve Your Goals
+              </h2>
+              <p className="text-lg mb-6">
+                Take the first step towards success.
+              </p>
+              <button className="bg-orange-500 px-6 py-3 rounded-full hover:bg-black transition-all">
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      </Slider>
     </div>
   );
 };
 
 export default HeroSection;
+

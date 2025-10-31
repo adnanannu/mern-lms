@@ -1,33 +1,60 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true
+const userSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    email:{
-        type:String,
-        required:true
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+      type: String,
+      required: true,
     },
-    role:{
-        type:String,
-        enum:["instructor", "student"],
-        default:'student'
+    role: {
+      type: String,
+      enum: ["instructor", "student", "superadmin"],
+      default: "student",
     },
-    enrolledCourses:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Course'
-        }
+    enrolledCourses: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course",
+      },
     ],
-    photoUrl:{
-        type:String,
-        default:""
-    }
-},{timestamps:true});
+    teacherRequest: { type: Boolean, default: false }, 
+    photoUrl: {
+      type: String,
+      default: "",
+    },
+    zoomAccessToken: {
+      type: String,
+      default: null,
+    },
+    zoomRefreshToken: {
+      type: String,
+      default: null,
+    },
+    zoomTokenExpiry: {
+      type: Date,
+      default: null,
+    },
+    zoomId: {
+      type: String,
+      default: null,
+    },
+
+    // 🔹 New field to track teacher requests
+    isTeacherRequested: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
 
 export const User = mongoose.model("User", userSchema);

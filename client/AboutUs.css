@@ -1,0 +1,142 @@
+/* Overall container for the About Us page */
+.aboutus-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa, #e2e3e5);
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Heading style */
+.aboutus-heading {
+  font-size: 3rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 700;
+  animation: fadeIn 2s ease-out;
+}
+
+/* Paragraph text */
+.aboutus-paragraph {
+  font-size: 1.2rem;
+  color: #555;
+  max-width: 800px;
+  line-height: 1.8;
+  margin-bottom: 30px;
+  animation: slideIn 1.5s ease-out;
+}
+
+/* Card layout for vision and values */
+.aboutus-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 80%;
+  max-width: 1000px;
+  animation: bounceIn 2s ease-out;
+}
+
+/* Each card item style */
+.card-item {
+  padding: 20px;
+  margin: 10px;
+  text-align: left;
+  width: 45%;
+}
+
+/* Title inside the card */
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+/* Description text inside the card */
+.card-description {
+  font-size: 1rem;
+  color: #777;
+  line-height: 1.6;
+}
+
+/* Button styling */
+.aboutus-button {
+  margin-top: 30px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInButton 2s ease-out;
+}
+
+.aboutus-button:hover {
+  background-color: #0056b3;
+}
+
+/* Animation for fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation for sliding in paragraph */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animation for card bouncing */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button fade-in animation */
+@keyframes fadeInButton {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
