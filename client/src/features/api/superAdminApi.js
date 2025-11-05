@@ -1,4 +1,4 @@
-import { apiSlice } from "./apiSlice";
+import { apiSlice } from "./apiSlice.js";
 
 export const superAdminApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
